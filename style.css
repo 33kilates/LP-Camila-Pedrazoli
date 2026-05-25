@@ -213,7 +213,7 @@ a {
 .nav-mobile {
     display: none;
     flex-direction: column;
-    padding: 0 24px 20px;
+    padding: 0 24px 0;
     gap: 0;
     max-height: 0;
     overflow: hidden;
@@ -963,6 +963,13 @@ a {
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-top: 40px;
+}
+
+/* Vídeo centralizado na última linha */
+.mosaic-video {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    justify-self: center;
 }
 
 .mosaic-item {
