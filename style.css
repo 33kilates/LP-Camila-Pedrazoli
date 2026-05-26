@@ -130,7 +130,7 @@ a {
 }
 
 .logo-img {
-    height: 72px;
+    height: 90px;
     width: auto;
     object-fit: contain;
 }
@@ -1317,7 +1317,7 @@ a {
 }
 
 .footer-logo {
-    height: 64px;
+    height: 80px;
     margin-bottom: 16px;
     filter: brightness(0) invert(1);
     opacity: 0.85;
@@ -1573,7 +1573,7 @@ a {
     }
 
     .logo-img {
-        height: 54px;
+        height: 64px;
     }
 
     .trust-item {

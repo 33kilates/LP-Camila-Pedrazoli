@@ -1,0 +1,23 @@
+# Cache headers para Netlify — otimização de performance
+
+# Imagens locais: cache de 1 ano (versionado pelo conteúdo)
+/img/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# CSS e JS: cache de 1 semana
+/*.css
+  Cache-Control: public, max-age=604800
+/*.js
+  Cache-Control: public, max-age=604800
+
+# HTML: revalidar sempre (garante que atualizações sejam imediatas)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Fontes externas preconnect e segurança
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin

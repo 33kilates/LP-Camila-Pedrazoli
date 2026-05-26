@@ -7,13 +7,22 @@
     <meta name="description" content="Semijoias de alto padrão no atacado com margens de até 300%. Fotos profissionais inclusas, troca de mercadorias garantida e suporte comercial personalizado. Comece a partir de R$ 500.">
     <meta name="keywords" content="semijoias atacado, revender semijoias, fornecedor semijoias, atacado semijoias ouro 18k, revendedora semijoias">
 
-    <!-- Google Fonts: Playfair Display (serifada premium) + Poppins (corpo elegante) -->
+    <!-- Preconnect: Google Fonts + CDN de imagens externo -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://camilapedrazoli.bwimg.com.br" crossorigin>
+    <link rel="preconnect" href="https://connect.facebook.net" crossorigin>
+
+    <!-- Google Fonts: carregamento não-bloqueante -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
 
     <!-- Favicon do site original -->
     <link rel="shortcut icon" href="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/favicon.ico">
+
+    <!-- Preload: Hero image (LCP element) -->
+    <link rel="preload" as="image" type="image/webp" href="img/hero.webp">
 
     <link rel="stylesheet" href="style.css">
 
@@ -46,7 +55,7 @@
     <header class="header" id="header">
         <div class="header-container">
             <a href="#hero" class="logo" id="logo-link">
-                <img src="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/logo.png?1775663103" alt="Camila Pedrazoli Semijoias" class="logo-img">
+                <img src="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/logo.png?1775663103" alt="Camila Pedrazoli Semijoias" class="logo-img" fetchpriority="high">
             </a>
             <nav class="nav-desktop" id="nav-desktop">
                 <a href="#planos" class="nav-link">Planos</a>
@@ -92,7 +101,10 @@
             </div>
         </div>
         <div class="hero-image">
-            <img src="img/hero.png" alt="Semijoias de alto padrão Camila Pedrazoli" loading="eager">
+            <picture>
+                <source srcset="img/hero.webp" type="image/webp">
+                <img src="img/hero.png" alt="Semijoias de alto padrão Camila Pedrazoli" loading="eager" fetchpriority="high" width="800" height="800">
+            </picture>
         </div>
     </section>
 
@@ -405,39 +417,39 @@
 
             <div class="mosaic-grid" id="mosaic-grid">
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep1.jpeg" alt="Depoimento de revendedora 1" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep1.webp" type="image/webp"><img src="img/depoimentos/dep1.jpeg" alt="Depoimento de revendedora 1" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep2.jpeg" alt="Depoimento de revendedora 2" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep2.webp" type="image/webp"><img src="img/depoimentos/dep2.jpeg" alt="Depoimento de revendedora 2" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep3.jpeg" alt="Depoimento de revendedora 3" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep3.webp" type="image/webp"><img src="img/depoimentos/dep3.jpeg" alt="Depoimento de revendedora 3" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep4.jpeg" alt="Depoimento de revendedora 4" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep4.webp" type="image/webp"><img src="img/depoimentos/dep4.jpeg" alt="Depoimento de revendedora 4" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep5.jpeg" alt="Depoimento de revendedora 5" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep5.webp" type="image/webp"><img src="img/depoimentos/dep5.jpeg" alt="Depoimento de revendedora 5" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep6.jpeg" alt="Depoimento de revendedora 6" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep6.webp" type="image/webp"><img src="img/depoimentos/dep6.jpeg" alt="Depoimento de revendedora 6" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep7.jpeg" alt="Depoimento de revendedora 7" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep7.webp" type="image/webp"><img src="img/depoimentos/dep7.jpeg" alt="Depoimento de revendedora 7" loading="lazy" width="585" height="1040"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item" onclick="openLightbox(this)">
-                    <img src="img/depoimentos/dep8.jpeg" alt="Depoimento de revendedora 8" loading="lazy">
+                    <picture><source srcset="img/depoimentos/dep8.webp" type="image/webp"><img src="img/depoimentos/dep8.jpeg" alt="Depoimento de revendedora 8" loading="lazy" width="450" height="800"></picture>
                     <div class="mosaic-overlay"><span>🔍 Ampliar</span></div>
                 </div>
                 <div class="mosaic-item mosaic-video">
-                    <video src="img/depoimentos/dep_video.mp4" controls preload="metadata" poster="">
+                    <video src="img/depoimentos/dep_video.mp4" controls preload="none" poster="">
                         Seu navegador não suporta vídeos.
                     </video>
                     <div class="mosaic-video-label">▶ Vídeo Depoimento</div>
@@ -528,7 +540,7 @@
     <footer class="footer" id="footer">
         <div class="footer-container">
             <div class="footer-brand">
-                <img src="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/logo.png?1775663103" alt="Camila Pedrazoli Semijoias" class="footer-logo">
+                <img src="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/logo.png?1775663103" alt="Camila Pedrazoli Semijoias" class="footer-logo" loading="lazy">
                 <p>Semijoias de alto padrão no atacado. Mais que uma fornecedora, sua parceira de crescimento.</p>
             </div>
             <div class="footer-links">
