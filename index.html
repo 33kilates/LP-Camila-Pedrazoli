@@ -16,6 +16,24 @@
     <link rel="shortcut icon" href="https://camilapedrazoli.bwimg.com.br/camilapedrazoli/template/favicon.ico">
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1038716357806540');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1038716357806540&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
 
@@ -664,6 +682,79 @@
             }
             if (e.key === 'ArrowLeft') navigateLightbox(e, -1);
             if (e.key === 'ArrowRight') navigateLightbox(e, 1);
+        });
+
+        // === META PIXEL: Evento 'Contact' nos botões de WhatsApp ===
+        // Identifica o plano/local do clique para enviar como parâmetro
+        function getWhatsAppButtonLabel(el) {
+            if (el.id === 'btn-header-whatsapp') return 'header';
+            if (el.id === 'hero-cta-whatsapp') return 'hero';
+            if (el.id === 'cta-aspirante') return 'plano_aspirante';
+            if (el.id === 'cta-prata') return 'plano_prata';
+            if (el.id === 'cta-ouro') return 'plano_ouro';
+            if (el.id === 'cta-diamante') return 'plano_diamante';
+            if (el.id === 'cta-final-whatsapp') return 'cta_final';
+            if (el.id === 'floating-whatsapp') return 'flutuante';
+            if (el.classList.contains('nav-link-cta')) return 'menu_mobile';
+            return 'outro';
+        }
+
+        // Envio server-side via API de Conversões (CAPI)
+        function sendCAPIEvent(eventName, buttonLabel) {
+            const pixelId = '1038716357806540';
+            const accessToken = 'EAAGVCxhxEdcBRqPIqshZB1gtb1X2SGzc048oA56hDh8yk3OhCy0F2XOhKH1S1clKz0EZCUqA07eIJbnq55XW6JXEKLGCTyYWEdF8cfDGvFIQKedWiLwJApzemzXeFkmkwxvmVIne018ZA6mcYqJgT5ZB2vxImrNIYhNZCZCBjIDJ8DFbkrKx2ntlsB18PyYBrNgQZDZD';
+            const url = 'https://graph.facebook.com/v21.0/' + pixelId + '/events?access_token=' + accessToken;
+
+            // Coleta dados para deduplicação e enriquecimento
+            const eventId = eventName + '_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+            const eventTime = Math.floor(Date.now() / 1000);
+            const sourceUrl = window.location.href;
+            const userAgent = navigator.userAgent;
+
+            // Também passa o eventID para o Pixel browser para deduplicação
+            if (typeof fbq !== 'undefined') {
+                fbq('track', eventName, { content_name: buttonLabel }, { eventID: eventId });
+            }
+
+            const payload = {
+                data: [{
+                    event_name: eventName,
+                    event_time: eventTime,
+                    event_id: eventId,
+                    event_source_url: sourceUrl,
+                    action_source: 'website',
+                    user_data: {
+                        client_user_agent: userAgent,
+                        client_ip_address: null
+                    },
+                    custom_data: {
+                        content_name: buttonLabel
+                    }
+                }]
+            };
+
+            // Envia via Beacon API (não bloqueia a navegação para o WhatsApp)
+            if (navigator.sendBeacon) {
+                const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+                navigator.sendBeacon(url, blob);
+            } else {
+                // Fallback para fetch com keepalive
+                fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                    keepalive: true
+                }).catch(() => {});
+            }
+        }
+
+        // Intercepta todos os links de WhatsApp e dispara o evento 'Contact'
+        document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const label = getWhatsAppButtonLabel(this);
+                // Dispara evento no Pixel (browser-side) + CAPI (server-side)
+                sendCAPIEvent('Contact', label);
+            });
         });
     </script>
 
